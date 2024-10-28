@@ -244,34 +244,6 @@
                         "example": ""
                       }
                     }
-                  },
-                  "values": {
-                        "properties": {
-                      "CentralAccount": {
-                        "type": "string",
-                        "example": "TJORGPRAD"
-                      },
-                      "InternalName": {
-                        "type": "string",
-                        "example": "Prado Jorge MTI-I EXTERN"
-                      },
-                      "UID_Person": {
-                        "type": "string",
-                        "example": "fb2929cc-38a0-4486-80ab-0d78a6eccc6b"
-                      },
-                      "XMarkedForDeletion": {
-                        "type": "integer",
-                        "format": "int32"
-                      }
-                    }
-                  },
-                  "displayValues": {
-                        "properties": {
-                      "XMarkedForDeletion": {
-                        "type": "string",
-                        "example": ""
-                      }
-                    }
                   }
                 }
             }
