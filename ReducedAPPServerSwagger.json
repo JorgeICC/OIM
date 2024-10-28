@@ -177,6 +177,108 @@
         }
       }
     },
+    "/entities/Person": {
+      "get": {
+        "tags": [
+          "Single Entities"
+        ],
+        "summary": "Get a list of entities",
+        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "where",
+            "description": "DefaultEmailAddress in ('Andrea.Schuepfer@axpo.com','jorge.prado@axpo.com')",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collection entry",
+            "schema": {
+                "required": [
+                  "uri"
+                ],
+                "properties": {
+                  "uri": {
+                    "type": "string",
+                    "example": "/AppServer/api/entity/Person/fb2929cc-38a0-4486-80ab-0d78a6eccc6b"
+                  },
+                  "display": {
+                    "type": "string",
+                    "example": "Prado Jorge MTI-I EXTERN (TJORGPRAD)"
+                  },
+                  "longDisplay": {
+                    "type": "string",
+                    "example": "Prado Jorge MTI-I EXTERN (TJORGPRAD)"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "values": {
+                        "properties": {
+                      "CentralAccount": {
+                        "type": "string",
+                        "example": "TJORGPRAD"
+                      },
+                      "InternalName": {
+                        "type": "string",
+                        "example": "Prado Jorge MTI-I EXTERN"
+                      },
+                      "UID_Person": {
+                        "type": "string",
+                        "example": "fb2929cc-38a0-4486-80ab-0d78a6eccc6b"
+                      },
+                      "XMarkedForDeletion": {
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
+                  "displayValues": {
+                        "properties": {
+                      "XMarkedForDeletion": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  },
+                  "values": {
+                        "properties": {
+                      "CentralAccount": {
+                        "type": "string",
+                        "example": "TJORGPRAD"
+                      },
+                      "InternalName": {
+                        "type": "string",
+                        "example": "Prado Jorge MTI-I EXTERN"
+                      },
+                      "UID_Person": {
+                        "type": "string",
+                        "example": "fb2929cc-38a0-4486-80ab-0d78a6eccc6b"
+                      },
+                      "XMarkedForDeletion": {
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
+                  "displayValues": {
+                        "properties": {
+                      "XMarkedForDeletion": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                }
+            }
+          }
+        }
+      }
+    },
     "/entity/AERole": {
       "post": {
         "tags": [
