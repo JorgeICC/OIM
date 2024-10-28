@@ -18,18 +18,6 @@
     {
       "name": "Single Entities",
       "description": "Create, read, update, and delete single entities"
-    },
-    {
-      "name": "Collections",
-      "description": "Query the system for a specific set of entities"
-    },
-    {
-      "name": "Assignments",
-      "description": "Handle assignments in member tables"
-    },
-    {
-      "name": "Scripts",
-      "description": "Run scripts"
     }
   ],
   "paths": {
@@ -97,7 +85,7 @@
                       },
                       "XMarkedForDeletion": {
                         "type": "string",
-                        "example": ""
+                        "example": " "
                       }
                     }
                   }
@@ -107,7 +95,7 @@
         }
       }
     },
-        "/entities/AERole": {
+    "/entities/AERole": {
       "get": {
         "tags": [
           "Single Entities"
@@ -189,7 +177,7 @@
         }
       }
     },
-    "/entity/{table}": {
+    "/entity/AERole": {
       "post": {
         "tags": [
           "Single Entities"
@@ -197,19 +185,33 @@
         "summary": "Create a single entity",
         "parameters": [
           {
-            "in": "path",
-            "name": "table",
-            "description": "Table name",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
             "description": "Values to change",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SingleChangeBody"
+              "properties": {
+                "values": {
+                  "properties": {
+                    "Ident_AERole": {
+                      "type": "string",
+                      "example": "Abstraction Layers Owners"
+                    },
+                    "UID_OrgRoot": {
+                      "type": "string",
+                      "example": "QER-V-AERole"
+                    },
+                    "UID_ParentAERole": {
+                      "type": "string",
+                      "example": "QER-AEROLE-ITSHOPADMIN-OWNER"
+                    },
+                    "Commentary": {
+                      "type": "string",
+                      "example": "AbstractionLayer"
+                    }
+                  }
+                }
+              }
             }
           }
         ],
@@ -217,655 +219,26 @@
           "200": {
             "description": "Created new entity",
             "schema": {
-              "$ref": "#/definitions/CreateSingleResult"
-            }
-          }
-        }
-      }
-    },
-    "/entities": {
-      "post": {
-        "tags": [
-          "Single Entities"
-        ],
-        "summary": "Create a batch of single entities",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Entities to insert",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BulkChangeBodyInsert"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Created new entities",
-            "schema": {
-              "$ref": "#/definitions/CreateBulkResult"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Single Entities"
-        ],
-        "summary": "Update a batch of single entities",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Entities to update",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BulkChangeBodyUpdate"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Updated the entities",
-            "schema": {
-              "$ref": "#/definitions/ProcessIdResult"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Single Entities"
-        ],
-        "summary": "Delete a batch of single entities",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Entities to delete",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BulkChangeBodyDelete"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Updated the entities",
-            "schema": {
-              "$ref": "#/definitions/ProcessIdResult"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "CollectionQueryParms": {
-      "properties": {
-        "where": {
-          "description": "WHERE clause",
-          "type": "string"
-        },
-        "whereKey": {
-          "description": "Predefined WHERE clause from QBMLimitedSQL",
-          "type": "string"
-        },
-        "orderBy": {
-          "description": "ORDER BY clause",
-          "type": "string"
-        },
-        "offset": {
-          "description": "Offset of first item",
-          "type": "integer"
-        },
-        "limit": {
-          "description": "Maximum number of results",
-          "type": "integer",
-          "format": "int32"
-        },
-        "displayColumns": {
-          "description": "Additional display columns, semicolon separated",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "loadType": {
-          "description": "Collection load type",
-          "type": "string",
-          "default": "Default",
-          "enum": [
-            "Default",
-            "Slim",
-            "ForeignDisplays",
-            "ForeignDisplaysForAllColumns",
-            "BulkReadOnly",
-            "LoadForeignDisplaysEvenWhenExpensive"
-          ]
-        },
-        "queryParameters": {
-          "description": "Parameters to be used in WHERE clause",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "lastname": "Miller",
-            "age": 42
-          }
-        },
-        "queryByExample": {
-          "description": "Sample values to filter the entries",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "lastname": "Einstein",
-            "firstname": "Albert"
-          }
-        },
-        "noUrls": {
-          "description": "Do not return URLs for the entries",
-          "type": "boolean"
-        }
-      }
-    },
-    "CollectionQueryCountParms": {
-      "properties": {
-        "where": {
-          "description": "WHERE clause",
-          "type": "string"
-        },
-        "whereKey": {
-          "description": "Predefined WHERE clause from QBMLimitedSQL",
-          "type": "string"
-        },
-        "queryParameters": {
-          "description": "Parameters to be used in WHERE clause",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "lastname": "Miller",
-            "age": 42
-          }
-        },
-        "queryByExample": {
-          "description": "Sample values to filter the entries",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "example": {
-            "lastname": "Einstein",
-            "firstname": "Albert"
-          }
-        }
-      }
-    },
-    "CollectionEntry": {
-      "required": [
-        "uri"
-      ],
-      "properties": {
-        "uri": {
-          "type": "string",
-          "example": "/AppServer/api/entity/OrgRoot/QER-V-AERole"
-        },
-        "display": {
-          "type": "string",
-          "example": "Application role"
-        },
-        "longDisplay": {
-          "type": "string",
-          "example": "Application role"
-        },
-        "state": {
-          "type": "integer",
-          "example": 1
-        },
-        "values": {
               "properties": {
-            "Ident_OrgRoot": {
-              "type": "string",
-              "example": "Application role"
-            },
-            "UID_OrgRoot": {
-              "type": "string",
-              "example": "QER-V-AERole"
-            },
-            "XMarkedForDeletion": {
-              "type": "integer",
-              "format": "int32"
+                "uid": {
+                  "type": "string",
+                  "example": "6e487fe8-54a1-4adb-91a8-7437442360d8"
+                },
+                "uri": {
+                  "type": "string",
+                  "example": "/AppServer/api/entity/AERole/6e487fe8-54a1-4adb-91a8-7437442360d8"
+                },
+                "state": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "processId": {
+                  "type": "string",
+                  "example": "00bfd14d-1748-49f8-8230-6ae0b723acda"
+                }
+              }
             }
           }
-        },
-        "displayValues": {
-              "properties": {
-            "Ident_OrgRoot": {
-              "type": "string",
-              "example": "Application role"
-            },
-            "XMarkedForDeletion": {
-              "type": "string",
-              "example": ""
-            }
-          }
-        }
-      }
-    },
-    "SingleEntry": {
-      "required": [
-        "uri"
-      ],
-      "properties": {
-        "uri": {
-          "type": "string"
-        },
-        "uid": {
-          "type": "string"
-        },
-        "display": {
-          "type": "string"
-        },
-        "values": {
-          "$ref": "#/definitions/SampleValues"
-        },
-        "displayValues": {
-          "$ref": "#/definitions/DisplayValues"
-        },
-        "links": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Link"
-          }
-        }
-      }
-    },
-    "SampleValues": {
-      "properties": {
-        "StringColumn": {
-          "type": "string"
-        },
-        "IntColumn": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "DateColumn": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "DoubleColumn": {
-          "type": "number",
-          "format": "double",
-          "example": 3.14
-        },
-        "BoolColumn": {
-          "type": "boolean"
-        }
-      }
-    },
-    "DisplayValues": {
-      "properties": {
-        "Column1": {
-          "type": "string",
-          "example": "Display 1"
-        },
-        "Column2": {
-          "type": "string",
-          "example": "Display 2"
-        }
-      }
-    },
-    "SingleChangeBody": {
-      "properties": {
-        "values": {
-          "$ref": "#/definitions/SampleValues"
-        }
-      }
-    },
-    "Members": {
-      "properties": {
-        "members": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "CreateSingleResult": {
-      "properties": {
-        "uid": {
-          "type": "string"
-        },
-        "uri": {
-          "type": "string"
-        },
-        "state": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "processId": {
-          "type": "string"
-        }
-      }
-    },
-    "UpdateDeleteSingleResult": {
-      "properties": {
-        "state": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "processId": {
-          "type": "string"
-        }
-      }
-    },
-    "ProcessIdResult": {
-      "properties": {
-        "processId": {
-          "type": "string"
-        }
-      }
-    },
-    "InsertEntity": {
-      "required": [
-        "table"
-      ],
-      "properties": {
-        "table": {
-          "type": "string"
-        },
-        "values": {
-          "$ref": "#/definitions/SampleValues"
-        }
-      }
-    },
-    "UpdateEntity": {
-      "required": [
-        "table",
-        "uid"
-      ],
-      "properties": {
-        "table": {
-          "type": "string"
-        },
-        "uid": {
-          "type": "string"
-        },
-        "values": {
-          "$ref": "#/definitions/SampleValues"
-        }
-      }
-    },
-    "DeleteEntity": {
-      "required": [
-        "table",
-        "uid"
-      ],
-      "properties": {
-        "table": {
-          "type": "string"
-        },
-        "uid": {
-          "type": "string"
-        }
-      }
-    },
-    "BulkChangeBodyInsert": {
-      "properties": {
-        "entities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/InsertEntity"
-          }
-        }
-      }
-    },
-    "BulkChangeBodyUpdate": {
-      "properties": {
-        "entities": {
-          "type": "array",
-          "description": "Entities to update",
-          "items": {
-            "$ref": "#/definitions/UpdateEntity"
-          }
-        },
-        "insertMissing": {
-          "type": "boolean",
-          "description": "Insert entities that could not be found using the supplied keys.",
-          "default": false
-        }
-      }
-    },
-    "BulkChangeBodyDelete": {
-      "properties": {
-        "entities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeleteEntity"
-          }
-        }
-      }
-    },
-    "UidAndUri": {
-      "properties": {
-        "uid": {
-          "type": "string"
-        },
-        "uri": {
-          "type": "string"
-        }
-      }
-    },
-    "CreateBulkResult": {
-      "properties": {
-        "entities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UidAndUri"
-          }
-        },
-        "processId": {
-          "type": "string"
-        }
-      }
-    },
-    "AssignmentResult": {
-      "properties": {
-        "assigned": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "removed": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "alreadyAssigned": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "processId": {
-          "type": "string"
-        }
-      }
-    },
-    "Link": {
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Parameters": {
-      "properties": {
-        "parameters": {
-          "description": "Parameter values",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "example": [
-              "Parameter value",
-              42,
-              3,
-              14
-            ]
-          }
-        }
-      }
-    },
-    "ScriptParameters": {
-      "properties": {
-        "parameters": {
-          "description": "Parameter values",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "Parameter value"
-          }
-        },
-        "base": {
-          "description": "Object key of base object",
-          "type": "string",
-          "example": "<Key><T>Person</T><P>00000000-0000-0000-0000-000000000000</P></Key"
-        },
-        "value": {
-          "description": "Content of the Value variable in the script",
-          "type": "object",
-          "example": "Sample value"
-        },
-        "returnRawResult": {
-          "description": "Allow to return the raw object or string as result",
-          "type": "boolean",
-          "example": false
-        }
-      }
-    },
-    "ScriptResult": {
-      "properties": {
-        "result": {
-          "description": "Return value of the script",
-          "type": "object"
-        },
-        "value": {
-          "description": "Content of the Value variable in the script",
-          "type": "object"
-        }
-      }
-    },
-    "GenerationParameters": {
-      "properties": {
-        "parameters": {
-          "$ref": "#/definitions/SampleGenerationParameters"
-        }
-      }
-    },
-    "SampleGenerationParameters": {
-      "properties": {
-        "StringValue": {
-          "type": "string"
-        },
-        "IntValue": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "DateValue": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "DoubleValue": {
-          "type": "number",
-          "format": "double",
-          "example": 3.14
-        },
-        "BoolValue": {
-          "type": "boolean"
-        }
-      }
-    },
-    "SessionVariableParameters": {
-      "properties": {
-        "value": {
-          "description": "Value to set",
-          "type": "object",
-          "example": "Parameter value"
-        },
-        "clear": {
-          "description": "Set to true if the session variable should be removed",
-          "type": "boolean",
-          "example": false
-        }
-      }
-    },
-    "SessionVariablesParameters": {
-      "properties": {
-        "variables": {
-          "description": "Variables to set",
-          "type": "object",
-          "properties": {
-            "StringValue": {
-              "type": "string"
-            },
-            "IntValue": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "BoolValue": {
-              "type": "boolean"
-            }
-          }
-        }
-      }
-    },
-    "SessionVariablesClearParameters": {
-      "properties": {
-        "variables": {
-          "description": "Variables to remove",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "DialogProcessResult": {
-      "properties": {
-        "id": {
-          "description": "Process ID",
-          "type": "string"
-        },
-        "objectKey": {
-          "description": "Key of the base object of the process.",
-          "type": "string"
-        },
-        "state": {
-          "description": "Process state",
-          "type": "string"
-        },
-        "created": {
-          "description": "Process creation date",
-          "type": "string",
-          "format": "date-time"
-        },
-        "lastUpdated": {
-          "description": "Last update date of the process",
-          "type": "string",
-          "format": "date-time"
-        },
-        "display": {
-          "description": "Process description",
-          "type": "string"
-        },
-        "comment": {
-          "description": "Comment",
-          "type": "string"
         }
       }
     }
