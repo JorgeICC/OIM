@@ -33,126 +33,157 @@
     }
   ],
   "paths": {
-    "/entities/{table}": {
+    "/entities/OrgRoot": {
       "get": {
         "tags": [
-          "Collections"
+          "Single Entities"
         ],
         "summary": "Get a list of entities",
         "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
         "parameters": [
-          {
-            "in": "path",
-            "name": "table",
-            "description": "Table name",
-            "required": true,
-            "type": "string"
-          },
           {
             "in": "query",
             "name": "where",
-            "description": "WHERE clause",
+            "description": "Ident_OrgRoot = 'Application Role'",
             "required": false,
             "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "whereKey",
-            "description": "Predefined WHERE clause from QBMLimitedSQL",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "orderBy",
-            "description": "ORDER BY clause",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "description": "Offset of first item",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "description": "Maximum number of results",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "in": "query",
-            "name": "displayColumns",
-            "description": "Additional display columns, semicolon separated",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "loadType",
-            "description": "Collection load type",
-            "required": false,
-            "type": "string",
-            "default": "Default",
-            "enum": [
-              "Default",
-              "Slim",
-              "ForeignDisplays",
-              "ForeignDisplaysForAllColumns",
-              "BulkReadOnly",
-              "LoadForeignDisplaysEvenWhenExpensive"
-            ]
-          },
-          {
-            "in": "query",
-            "name": "noUrls",
-            "description": "Do not return URLs for the entries",
-            "type": "boolean"
           }
         ],
         "responses": {
           "200": {
             "description": "Collection entry",
             "schema": {
-              "$ref": "#/definitions/CollectionEntry"
+                "required": [
+                  "uri"
+                ],
+                "properties": {
+                  "uri": {
+                    "type": "string",
+                    "example": "/AppServer/api/entity/OrgRoot/QER-V-AERole"
+                  },
+                  "display": {
+                    "type": "string",
+                    "example": "Application role"
+                  },
+                  "longDisplay": {
+                    "type": "string",
+                    "example": "Application role"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "values": {
+                        "properties": {
+                      "Ident_OrgRoot": {
+                        "type": "string",
+                        "example": "Application role"
+                      },
+                      "UID_OrgRoot": {
+                        "type": "string",
+                        "example": "QER-V-AERole"
+                      },
+                      "XMarkedForDeletion": {
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
+                  "displayValues": {
+                        "properties": {
+                      "Ident_OrgRoot": {
+                        "type": "string",
+                        "example": "Application role"
+                      },
+                      "XMarkedForDeletion": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                }
             }
           }
         }
-      },
-      "post": {
+      }
+    },
+        "/entities/AERole": {
+      "get": {
         "tags": [
-          "Collections"
+          "Single Entities"
         ],
         "summary": "Get a list of entities",
         "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
         "parameters": [
           {
-            "in": "path",
-            "name": "table",
-            "description": "Table name",
-            "required": true,
+            "in": "query",
+            "name": "where",
+            "description": "FullPath = N'Request & Fulfillment\\IT Shop\\Product owners'",
+            "required": false,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Query properties",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CollectionQueryParms"
-            }
           }
         ],
         "responses": {
           "200": {
             "description": "Collection entry",
             "schema": {
-              "$ref": "#/definitions/CollectionEntry"
+                "required": [
+                  "uri"
+                ],
+                "properties": {
+                  "uri": {
+                    "type": "string",
+                    "example": "/AppServer/api/entity/AERole/QER-AEROLE-ITSHOPADMIN-OWNER"
+                  },
+                  "display": {
+                    "type": "string",
+                    "example": "Product owners"
+                  },
+                  "longDisplay": {
+                    "type": "string",
+                    "example": "Request & Fulfillment\\IT Shop\\Product owners"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "values": {
+                        "properties": {
+                      "FullPath": {
+                        "type": "string",
+                        "example": "Request & Fulfillment\\IT Shop\\Product owners"
+                      },
+                      "Ident_AERole": {
+                        "type": "string",
+                        "example": "Product owners"
+                      },
+                      "UID_AERole": {
+                        "type": "string",
+                        "example": "QER-AEROLE-ITSHOPADMIN-OWNER"
+                      },
+                      "XMarkedForDeletion": {
+                        "type": "integer",
+                        "format": "int32"
+                      }
+                    }
+                  },
+                  "displayValues": {
+                        "properties": {
+                      "FullPath": {
+                        "type": "string",
+                        "example": "Request & Fulfillment\\IT Shop\\Product owners"
+                      },
+                       "Ident_AERole": {
+                        "type": "string",
+                        "example": "Product owners"
+                      },
+                      "XMarkedForDeletion": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                }
             }
           }
         }
@@ -382,19 +413,48 @@
       ],
       "properties": {
         "uri": {
-          "type": "string"
+          "type": "string",
+          "example": "/AppServer/api/entity/OrgRoot/QER-V-AERole"
         },
         "display": {
-          "type": "string"
+          "type": "string",
+          "example": "Application role"
         },
         "longDisplay": {
-          "type": "string"
+          "type": "string",
+          "example": "Application role"
+        },
+        "state": {
+          "type": "integer",
+          "example": 1
         },
         "values": {
-          "$ref": "#/definitions/SampleValues"
+              "properties": {
+            "Ident_OrgRoot": {
+              "type": "string",
+              "example": "Application role"
+            },
+            "UID_OrgRoot": {
+              "type": "string",
+              "example": "QER-V-AERole"
+            },
+            "XMarkedForDeletion": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         },
         "displayValues": {
-          "$ref": "#/definitions/DisplayValues"
+              "properties": {
+            "Ident_OrgRoot": {
+              "type": "string",
+              "example": "Application role"
+            },
+            "XMarkedForDeletion": {
+              "type": "string",
+              "example": ""
+            }
+          }
         }
       }
     },
