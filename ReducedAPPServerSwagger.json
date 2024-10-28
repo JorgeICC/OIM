@@ -18,6 +18,10 @@
     {
       "name": "Single Entities",
       "description": "Create, read, update, and delete single entities"
+    },
+    {
+      "name": "Multiple Entities",
+      "description": "Create, read, update, and delete single entities"
     }
   ],
   "paths": {
@@ -311,6 +315,133 @@
                   "type": "string",
                   "example": "00bfd14d-1748-49f8-8230-6ae0b723acda"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entity/AccProductGroup": {
+      "post": {
+        "tags": [
+          "Single Entities"
+        ],
+        "summary": "Create a single entity",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Values to change",
+            "required": true,
+            "schema": {
+              "properties": {
+                "values": {
+                  "properties": {
+                    "Ident_AccProductGroup": {
+                      "type": "string",
+                      "example": "Abstraction Layers"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created new entity",
+            "schema": {
+              "properties": {
+                "uid": {
+                  "type": "string",
+                  "example": "e2302534-5bab-431a-8cd3-cb9ac3bca76d"
+                },
+                "uri": {
+                  "type": "string",
+                  "example": "/AppServer/api/entity/AccProductGroup/e2302534-5bab-431a-8cd3-cb9ac3bca76d"
+                },
+                "state": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "processId": {
+                  "type": "string",
+                  "example": "0dc57a4b-2c89-43b9-bd4d-5002150a446b"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities": {
+      "post": {
+        "tags": [
+          "Multiple Entities"
+        ],
+        "summary": "Create a batch of single entities",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Entities to insert",
+            "required": true,
+            "schema": {
+              "properties": {
+                "entities": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "table"
+                    ],
+                    "properties": {
+                      "table": {
+                        "type": "string",
+                        "example":"PersonInAERole"
+                      },
+                      "values": {
+                              "properties": {
+                                "UID_AERole": {
+                                  "type": "string",
+                                  "example":"fe674090-acf2-4eb6-8430-785ffe2fc5d5"
+                                },
+                                "UID_Person": {
+                                  "type": "string",
+                                  "example":"db4aa6c1-d79f-45cd-8d8c-0bb2458478a8"
+                                }
+                              }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created new entities",
+            "schema": {
+              "properties": {
+                "entities": {
+                  "type": "array",
+                  "items": {
+                              "properties": {
+                                "uid": {
+                                  "type": "string",
+                                  "example":"fe674090-acf2-4eb6-8430-785ffe2fc5d5"
+                                },
+                                "uri": {
+                                  "type": "string",
+                                  "example":"db4aa6c1-d79f-45cd-8d8c-0bb2458478a8"
+                                }
+                              }
+                  }
+                },
+                "processId": {
+                                  "type": "string",
+                                  "example":"29f70683-bde2-40de-9192-778d66f98456"
+                                }
               }
             }
           }
