@@ -503,7 +503,7 @@
           "Single Entities"
         ],
         "summary": "Get the Entra ID Groups on IAM",
-        "description": "\"Look for the Entra ID groups on the IAM tables to add them later to a system role. We need the XObjectKey to add the groups to a system role, and that column is not provided by the API by defaault so it have to eb specifically requested in the displaycolumns.\nOUTPUT: XObjectKey.\"\n",
+        "description": "\"Look for the Entra ID groups on the IAM tables to add them later to a system role. We need the XObjectKey to add the groups to a system role, and that column is not provided by the API by default so it have to eb specifically requested in the displaycolumns.\nOUTPUT: XObjectKey.\"\n",
         "parameters": [
           {
             "in": "query",
