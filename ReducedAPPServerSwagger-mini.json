@@ -794,6 +794,7 @@
           "Single Entities"
         ],
         "summary": "Create a single entity",
+        "description": "\"Create a System Role. Description is always '<Product name> Description' so later on this can be translated, this value will be the EntryKey in translation. KEYS:Ident_ESet INPUTS: UID_EsetType,UID_AccProduct,  \"\n",
         "parameters": [
           {
             "in": "body",
