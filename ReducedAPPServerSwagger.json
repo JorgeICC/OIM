@@ -588,7 +588,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Create a single entity",
+        "summary": "Create a Applicatrion Role",
+        "description": "\"Create a role for Abstraction Layers. Only has to be done once per enviroment. Commentary is a fixed value as in the example. Ident_AERole will be the name shown for the role. INPUTS: UID_OrgRoot, UID_ParentAERole \"\n",
         "parameters": [
           {
             "in": "body",
@@ -653,7 +654,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Create a single entity",
+        "summary": "Create a Service Category",
+        "description": "\"Create a Parent Service Category. Only has to be done once per enviroment. Ident_AccProductGroup is the name of the Service Category. INPUTS: UID_AccProductGroup (-> UID_AccProductGroupParent) \"\n",
         "parameters": [
           {
             "in": "body",
@@ -710,7 +712,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Create a single entity",
+        "summary": "Create a Service Item",
+        "description": "\"Create a Service Item. This is the product itslef on the Portal. Ident_AccProduct is the name of the Service Item. IsInactive has be decided to be always set to true, so products are created disabled. INPUTS: UID_AccProductGroup,UID_OrgRuler (UID from Owners role created) \"\n",
         "parameters": [
           {
             "in": "body",
