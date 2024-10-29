@@ -30,8 +30,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get root Role Class",
-        "description": "\"Get the UID of the root Role Class.\n We look for the 'Applicaiton Role' which is the root. It is always the same UID in each envirtoment, so this UID could be hardcoded.\"\n",
+        "summary": "Get Root Role Class",
+        "description": "\"Get the UID of the Root Role Class.\n We look for the 'Applicaiton Role' which is the root. It is always the same UID in each envirtoment. Output : UID_OrgRoot \"\n",
         "parameters": [
           {
             "in": "query",
@@ -104,8 +104,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get OIM Application Role",
+        "description": "\"Get the UID of the Application Role for ITShop.\n We look for the Product Owners which is the root role for the Portal. It is always the same UID in each envirtoment. Output : UID_AERole \"\n",
         "parameters": [
           {
             "in": "query",
@@ -186,8 +186,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get employees",
+        "description": "\"Get employee objects based on a where clause..\nIn this case we use the emailaddress to look for them but other columns/data can be used.OUTPUT: UID_Person.\"\n",
         "parameters": [
           {
             "in": "query",
@@ -261,8 +261,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get a Service Category",
+        "description": "\"Look for the service category.\n OUTPUT: UID_AccProductGroup\"\n",
         "parameters": [
           {
             "in": "query",
@@ -344,8 +344,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get the System Role Type",
+        "description": "\"For now we are using only the 'Common' category, this can change in the comming weeks.\nOUTPUT: UID_ESetType.\"\n",
         "parameters": [
           {
             "in": "query",
@@ -419,8 +419,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get ITShop Structure",
+        "description": "\"Get Where the products will be placed in the Portal, this may change based on the approval workflow to be used and the customer..\nOUTPUT: UID_ITShopOrg .\"\n",
         "parameters": [
           {
             "in": "query",
@@ -502,13 +502,13 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get the Entra ID Groups on IAM",
+        "description": "\"Look for the Entra ID groups on the IAM tables to add them later to a system role. We need the XObjectKey to add the groups to a system role, and that column is not provided by the API by defaault so it have to eb specifically requested in the displaycolumns.\nOUTPUT: XObjectKey.\"\n",
         "parameters": [
           {
             "in": "query",
             "name": "where",
-            "description": "DisplayName = ' CL-AXPO-D365-ACCESS-Instance-AXPODE' and UID_AADOrganization in (Select UID_AADOrganization FROM AADOrganization WHERE DisplayName = 'Axpo Services AG' )",
+            "description": "DisplayName = 'GROUPNAME' and UID_AADOrganization in (Select UID_AADOrganization FROM AADOrganization WHERE DisplayName = 'Axpo Services AG' )",
             "required": false,
             "type": "string"
           },
