@@ -30,8 +30,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Get a list of entities",
-        "description": "\"It is possible to query by example. Simply provide the columns to query in the form Name=Value in the URL.\nQuery parameters to be used in WHERE clauses and predefined WHERE clauses can be provided in the form\n@paramname=value. Per default they have the type string. It is possible to specify other types like\nthis: @otherParam[int]=3.\"\n",
+        "summary": "Get root Role Class",
+        "description": "\"Get the UID of the root Role Class.\n We look for the 'Applicaiton Role' which is the root. It is always the same UID in each envirtoment, so this UID could be hardcoded.\"\n",
         "parameters": [
           {
             "in": "query",
