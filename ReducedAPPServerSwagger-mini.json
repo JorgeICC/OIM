@@ -656,7 +656,6 @@
         "summary": "Create a single entity",
         "description": "\"Create a Service Item. This is the product itslef on the Portal. Ident_AccProduct is the name of the Service Item. IsInactive has be decided to be always set to true, so products are created disabled. KEYS: Ident_AccProduct INPUTS: UID_AccProductGroup,UID_OrgRuler (UID from Owners role created) \"\n",
         "parameters": [
-        "parameters": [
           {
             "in": "body",
             "name": "body",
