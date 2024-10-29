@@ -1042,7 +1042,8 @@
         "tags": [
           "Multiple Entities"
         ],
-        "summary": "Create a batch of single entities. In the case of assigment of owners to role KEYS: UID_AERole, UID_Person INPUTS:  UID_AERole, UID_Person ",
+        "summary": "Create a batch of single entities.",
+        "description": "\"In the case of assigment of owners to role KEYS: UID_AERole, UID_Person INPUTS:  UID_AERole, UID_Person\"\n",
         "parameters": [
           {
             "in": "body",
