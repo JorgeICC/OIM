@@ -31,7 +31,7 @@
           "Single Entities"
         ],
         "summary": "Get Root Role Class",
-        "description": "\"Get the UID of the Root Role Class.\n We look for the 'Applicaiton Role' which is the root. It is always the same UID in each envirtoment. Output : UID_OrgRoot \"\n",
+        "description": "\"Get the UID of the Root Role Class.\n We look for the 'Applicaiton Role' which is the root. It is always the same UID in each envirtoment. OUTPUT : UID_OrgRoot \"\n",
         "parameters": [
           {
             "in": "query",
@@ -105,7 +105,7 @@
           "Single Entities"
         ],
         "summary": "Get OIM Application Role",
-        "description": "\"Get the UID of the Application Role for ITShop.\n We look for the Product Owners which is the root role for the Portal. It is always the same UID in each envirtoment. Output : UID_AERole \"\n",
+        "description": "\"Get the UID of the Application Role for ITShop.\n We look for the Product Owners which is the root role for the Portal. It is always the same UID in each envirtoment. OUTPUT : UID_AERole \"\n",
         "parameters": [
           {
             "in": "query",
@@ -589,7 +589,7 @@
           "Single Entities"
         ],
         "summary": "Create a Applicatrion Role",
-        "description": "\"Create a role for Abstraction Layers. Only has to be done once per enviroment. Commentary is a fixed value as in the example. Ident_AERole will be the name shown for the role. INPUTS: UID_OrgRoot, UID_ParentAERole \"\n",
+        "description": "\"Create a role for Abstraction Layers. Only has to be done once per enviroment. Commentary is a fixed value as in the example. Ident_AERole will be the name shown for the role. KEYS: Ident_AERole,UID_ParentAERole INPUTS: UID_OrgRoot, UID_ParentAERole \"\n",
         "parameters": [
           {
             "in": "body",
@@ -655,7 +655,7 @@
           "Single Entities"
         ],
         "summary": "Create a Service Category",
-        "description": "\"Create a Parent Service Category. Only has to be done once per enviroment. Ident_AccProductGroup is the name of the Service Category. INPUTS: UID_AccProductGroup (-> UID_AccProductGroupParent) \"\n",
+        "description": "\"Create a Parent Service Category. Only has to be done once per enviroment. Ident_AccProductGroup is the name of the Service Category. KEYS: Ident_AccProductGroup INPUTS: UID_AccProductGroup (-> UID_AccProductGroupParent) \"\n",
         "parameters": [
           {
             "in": "body",
@@ -713,7 +713,7 @@
           "Single Entities"
         ],
         "summary": "Create a Service Item",
-        "description": "\"Create a Service Item. This is the product itslef on the Portal. Ident_AccProduct is the name of the Service Item. IsInactive has be decided to be always set to true, so products are created disabled. INPUTS: UID_AccProductGroup,UID_OrgRuler (UID from Owners role created) \"\n",
+        "description": "\"Create a Service Item. This is the product itslef on the Portal. Ident_AccProduct is the name of the Service Item. IsInactive has be decided to be always set to true, so products are created disabled. KEYS: Ident_AccProduct INPUTS: UID_AccProductGroup,UID_OrgRuler (UID from Owners role created) \"\n",
         "parameters": [
           {
             "in": "body",
@@ -783,6 +783,7 @@
           "Single Entities"
         ],
         "summary": "Create a single entity",
+        "description": "\"Add translation to products on the Portal. SourceType is always Data, EntryValue is where to put the translation. UID_DialogColumn for Porduct description is always 'QER-5012221B72BE4EB19A7E828859AF3959' for translating other text the UID has to be looked for first. UID_DialogCulture is 'QBM-CULT-de-CH' for German and 'QBM-CULT-en-US' for English. EntryKey is '<Product Name> Description' .KEYS: UID_DialogColumn,UID_DialogCulture,EntryKey INPUTS: UID_DialogColumn,EntryKey  \"\n",
         "parameters": [
           {
             "in": "body",
@@ -852,6 +853,7 @@
           "Single Entities"
         ],
         "summary": "Create a single entity",
+        "description": "\"Create a System Role. Description is always '<Product name> Description' so later on this can be translated, this value will be the EntryKey in translation. KEYS:Ident_ESet INPUTS: UID_EsetType,UID_AccProduct,  \"\n",
         "parameters": [
           {
             "in": "body",
@@ -868,19 +870,19 @@
                     },
                     "UID_EsetType": {
                       "type": "string",
-                      "example": "QER-V-AERole"
+                      "example": "RMS-A929BA90EC799EF35DCA57AD916E4873"
                     },
                     "UID_AccProduct": {
                       "type": "string",
-                      "example": "QER-AEROLE-ITSHOPADMIN-OWNER"
+                      "example": "70f52df0-22e7-4ce4-8a41-ccde839a42c6"
                     },
-                    "DsiplayName": {
+                    "DisplayName": {
                       "type": "string",
-                      "example": "QER-AEROLE-ITSHOPADMIN-OWNER"
+                      "example": "Application 1 - Product 1 (Abstraction Layer Test)"
                     },
                     "Description": {
                       "type": "string",
-                      "example": "QER-AEROLE-ITSHOPADMIN-OWNER"
+                      "example": "Product Description"
                     },
                     "IsForITShop": {
                       "type": "boolean",
@@ -924,7 +926,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Create a single entity",
+        "summary": "System Role Assigment",
+        "description": "\"Link the System Role to the product. KEYS: UID_ESet,UID_ITShopOrg INPUTS:  UID_ESet,UID_ITShopOrg  \"\n",
         "parameters": [
           {
             "in": "body",
@@ -981,7 +984,8 @@
         "tags": [
           "Single Entities"
         ],
-        "summary": "Create a single entity",
+        "summary": "Create assigment for System Role",
+        "description": "\"Link the Entra ID group to the system role. KEYS: UID_ESet,Entitlement INPUTS:  UID_ESet,XObjectKey(->Entitlement)  \"\n",
         "parameters": [
           {
             "in": "body",
@@ -1038,7 +1042,7 @@
         "tags": [
           "Multiple Entities"
         ],
-        "summary": "Create a batch of single entities",
+        "summary": "Create a batch of single entities. In the case of assigment of owners to role KEYS: UID_AERole, UID_Person INPUTS:  UID_AERole, UID_Person ",
         "parameters": [
           {
             "in": "body",
